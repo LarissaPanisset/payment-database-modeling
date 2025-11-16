@@ -4,26 +4,16 @@ Este repositório documenta o processo completo de modelagem de um banco de dado
 
 ## **📋 Índice**
 
-- Contexto do Sistema
 - Estrutura do Projeto
 - Ferramentas Utilizadas
-- Modelagem de Dados
+- Contexto do Sistema
 - Entidades e Relacionamentos
+- Modelagem de Dados
 - Scripts SQL
 - Instruções de Uso
 - Lições Aprendidas
 - Licença
-
-## **🎯 Contexto do Sistema**
-
-A empresa precisa de um sistema robusto para gerenciar as transações financeiras dos seus clientes, observando as seguintes regras de negócio:
-
-- **Clientes** realizam **Pedidos**.
-- Cada **Pedido** é associado a um **Pagamento**.
-- O **Pagamento** possui um **Status Assíncrono**: `Pendente`, `Aprovado`, `Recusado` ou `Estornado`.
-- Um **Pagamento** utiliza uma única **Forma de Pagamento**.
-- **Formas de Pagamento** definem parâmetros como **`percentual_desconto`** ou **`percentual_juros_mes`**.
-- **Pagamentos** podem ser divididos em até 12 **Parcelas**, com flexibilidade para valores e datas de vencimento individuais por parcela.
+  
 
 ## **🏗️ Estrutura do Projeto**
 
@@ -45,6 +35,7 @@ A empresa precisa de um sistema robusto para gerenciar as transações financeir
  ┗ LICENSE
 ```
 
+
 ## **⚙️ Ferramentas Utilizadas**
 
 | **Ferramenta** | **Finalidade** | **Versão** |
@@ -54,6 +45,43 @@ A empresa precisa de um sistema robusto para gerenciar as transações financeir
 | **PostgreSQL** | SGBD para modelo físico | 14+ |
 | **DBeaver** | Interface e execução SQL | 23.0+ |
 
+
+
+## **🎯 Contexto do Sistema**
+
+A empresa precisa de um sistema robusto para gerenciar as transações financeiras dos seus clientes, observando as seguintes regras de negócio:
+
+- **Clientes** realizam **Pedidos**.
+- Cada **Pedido** é associado a um **Pagamento**.
+- O **Pagamento** possui um **Status Assíncrono**: `Pendente`, `Aprovado`, `Recusado` ou `Estornado`.
+- Um **Pagamento** utiliza uma única **Forma de Pagamento**.
+- **Formas de Pagamento** definem parâmetros como **`percentual_desconto`** ou **`percentual_juros_mes`**.
+- **Pagamentos** podem ser divididos em até 12 **Parcelas**, com flexibilidade para valores e datas de vencimento individuais por parcela.
+
+
+
+ ## **🏛️ Entidades e Relacionamentos**
+
+### **Principais Entidades**
+
+| **Entidade** | **Descrição** | **Atributos Principais** |
+| --- | --- | --- |
+| **Clientes** | Cadastro de clientes | `id`, `nome`, `email`, `cpf`, `data_cadastro` |
+| **Pedidos** | Registro de pedidos | `id`, `cliente_id`, `valor_total`, `data_pedido`, `status` |
+| **Pagamentos** | Transações de pagamento | `id`, `pedido_id`, `forma_pagamento_id`, `valor_total`, `status` |
+| **FormaPagamento** | Meios de pagamento | `id`, `nome`, `desconto`, `juros_mensal`, `parcelas_maximas` |
+| **Parcelas** | Parcelas do pagamento | `id`, `pagamento_id`, `numero_parcela`, `valor`, `data_vencimento`, `status` |
+
+### **Relacionamentos**
+
+```
+Cliente (1) ---- (N) Pedido
+Pedido (1) ---- (1) Pagamento
+FormaPagamento (1) ---- (N) Pagamento
+Pagamento (1) ---- (N) Parcela
+```
+
+ 
 ## **📊 Modelagem de Dados**
 
 ### **1. Modelo Conceitual**
@@ -79,26 +107,6 @@ A empresa precisa de um sistema robusto para gerenciar as transações financeir
 
 ![image.jpg](diagrams/03%20-%20Fisíco.png)
 
-## **🏛️ Entidades e Relacionamentos**
-
-### **Principais Entidades**
-
-| **Entidade** | **Descrição** | **Atributos Principais** |
-| --- | --- | --- |
-| **Clientes** | Cadastro de clientes | `id`, `nome`, `email`, `cpf`, `data_cadastro` |
-| **Pedidos** | Registro de pedidos | `id`, `cliente_id`, `valor_total`, `data_pedido`, `status` |
-| **Pagamentos** | Transações de pagamento | `id`, `pedido_id`, `forma_pagamento_id`, `valor_total`, `status` |
-| **FormaPagamento** | Meios de pagamento | `id`, `nome`, `desconto`, `juros_mensal`, `parcelas_maximas` |
-| **Parcelas** | Parcelas do pagamento | `id`, `pagamento_id`, `numero_parcela`, `valor`, `data_vencimento`, `status` |
-
-### **Relacionamentos**
-
-```
-Cliente (1) ---- (N) Pedido
-Pedido (1) ---- (1) Pagamento
-FormaPagamento (1) ---- (N) Pagamento
-Pagamento (1) ---- (N) Parcela
-```
 
 ## **🗃️ Scripts SQL**
 
@@ -134,7 +142,7 @@ create table if not exists modulo_pagamentos.pedidos (
 
 #### **`06 - script_queries.sql`**
 
-Exercícios
+Consultas
 
 1. Listar as parcelas para um determinado mês (exemplo: janeiro de 2026).
 2. Listar todas as parcelas de um pedido específico, mostrando o número da parcela e a data de vencimento.
