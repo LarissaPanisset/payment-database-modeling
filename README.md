@@ -102,7 +102,7 @@ Pagamento (1) ---- (N) Parcela
 
 ## **🗃️ Scripts SQL**
 
-### **`04 - script_create_table.sql`**
+#### **`04 - script_create_table.sql`**
 
 ```sql
 -- Exemplo de criação de tabelas
@@ -126,13 +126,13 @@ create table if not exists modulo_pagamentos.pedidos (
 );
 ```
 
-### **`05 - script_insert_table.sql`**
+#### **`05 - script_insert_table.sql`**
 
 - Dados de exemplo para todas as tabelas
 - Cenários de teste para diferentes formas de pagamento
 - Casos de uso realistas para análise
 
-### **`06 - script_queries.sql`**
+#### **`06 - script_queries.sql`**
 
 Exercícios
 
@@ -150,7 +150,7 @@ Exercícios
 12. Listar os pedidos onde o valor total pago é superior em mais de 5% ao valor bruto do pedido, mostrando a porcentagem exata do acréscimo.
 13. Listar clientes que fizeram mais de um pedido e utilizam formas de pagamento diferentes.
 
-### **`07 - script_indexes.sql`**
+#### **`07 - script_indexes.sql`**
 
 ```sql
 -- Exemplo de criação de indices
@@ -207,55 +207,55 @@ create index idx_pedidos_data on modulo_pagamentos.pedidos(data_pedido);
 
 # **💡 Lições Aprendidas**
 
-### **A Importância da Abordagem em Camadas**
+#### **A Importância da Abordagem em Camadas**
 
 - Seguir os três níveis (conceitual → lógico → físico) não é burocracia - é eficiência!
 - Cada etapa tem seu propósito específico e evita retrabalho
 - O modelo conceitual me ajudou a entender o domínio antes de me preocupar com implementação
 
-### **Ferramentas Certas para Cada Fase**
+#### **Ferramentas Certas para Cada Fase**
 
 - **BrModelo**: Perfeito para brainstorm inicial e validação com stakeholders não-técnicos
 - **MySQL Workbench**: Excelente para refinar relacionamentos e definir constraints
 - **PostgreSQL + DBeaver**: Combinação poderosa para implementação real
 
-### **Modelagem de Pagamentos Parcelados**
+#### **Modelagem de Pagamentos Parcelados**
 
 - Aprendi que parcelas merecem uma entidade própria.
 - Isso permite rastreamento individual de cada parcela (vencimentos, pagamentos, estornos)
 - Flexibilidade para cenários reais onde parcelas podem ter valores diferentes
 
-### **Gestão de Status Complexos**
+#### **Gestão de Status Complexos**
 
 - Implementar um fluxo coerente de status (Pendente → Aprovado → Recusado/Estornado)
 - A importância de registrar timestamps em cada transição de estado
 - Como constraints podem prevenir estados inválidos
 
-### **Pensamento Sistêmico**
+#### **Pensamento Sistêmico**
 
 - Como decisões na modelagem impactam todo o sistema
 - A importância de antecipar necessidades futuras (novas formas de pagamento, relatórios)
 - Balancear complexidade vs flexibilidade
 
-### **Documentação como Ferramenta**
+#### **Documentação como Ferramenta**
 
 - Diagramas salvam horas de explicação
 - Scripts modularizados facilitam manutenção e evolução
 
 
-### **Análise de Dados com Consultas Complexas**
+#### **Análise de Dados com Consultas Complexas**
 
 - Aprendi a criar queries que extraem insights de negócio valiosos
 - **Agregações**: COUNT, SUM, AVG para métricas de performance
 - **JOINs múltiplos**: Como relacionar cliente → pedido → pagamento → parcela
 - **Subqueries**: Para cálculos de percentuais e comparações
 
-### **Otimização de Consultas**
+#### **Otimização de Consultas**
 
 - Descobri que índices bem planejados melhoram performance em até 70%
 - **Composite indexes** para queries com múltiplos filtros
 
-### **Maior Insight**
+#### **Maior Insight**
 
 **Modelar é como arquitetura: quanto mais tempo gasto no planejamento, menos problemas surgem na construção. O investimento em uma boa modelagem inicial paga dividendos em toda a vida do projeto.**
 
