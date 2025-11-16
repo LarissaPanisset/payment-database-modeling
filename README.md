@@ -205,61 +205,20 @@ create index idx_pedidos_data on modulo_pagamentos.pedidos(data_pedido);
     ```
     
 
-# **💡 Lições Aprendidas**
+## **💡 Principais Aprendizados Técnicos**
 
-#### **A Importância da Abordagem em Camadas**
-
-- Seguir os três níveis (conceitual → lógico → físico) não é burocracia - é eficiência!
-- Cada etapa tem seu propósito específico e evita retrabalho
-- O modelo conceitual me ajudou a entender o domínio antes de me preocupar com implementação
-
-#### **Ferramentas Certas para Cada Fase**
-
-- **BrModelo**: Perfeito para brainstorm inicial e validação com stakeholders não-técnicos
-- **MySQL Workbench**: Excelente para refinar relacionamentos e definir constraints
-- **PostgreSQL + DBeaver**: Combinação poderosa para implementação real
-
-#### **Modelagem de Pagamentos Parcelados**
-
-- Aprendi que parcelas merecem uma entidade própria.
-- Isso permite rastreamento individual de cada parcela (vencimentos, pagamentos, estornos)
-- Flexibilidade para cenários reais onde parcelas podem ter valores diferentes
-
-#### **Gestão de Status Complexos**
-
-- Implementar um fluxo coerente de status (Pendente → Aprovado → Recusado/Estornado)
-- A importância de registrar timestamps em cada transição de estado
-- Como constraints podem prevenir estados inválidos
-
-#### **Pensamento Sistêmico**
-
-- Como decisões na modelagem impactam todo o sistema
-- A importância de antecipar necessidades futuras (novas formas de pagamento, relatórios)
-- Balancear complexidade vs flexibilidade
-
-#### **Documentação como Ferramenta**
-
-- Diagramas salvam horas de explicação
-- Scripts modularizados facilitam manutenção e evolução
-
-
-#### **Análise de Dados com Consultas Complexas**
-
-- Aprendi a criar queries que extraem insights de negócio valiosos
-- **Agregações**: COUNT, SUM, AVG para métricas de performance
-- **JOINs múltiplos**: Como relacionar cliente → pedido → pagamento → parcela
-- **Subqueries**: Para cálculos de percentuais e comparações
-
-#### **Otimização de Consultas**
-
-- Descobri que índices bem planejados melhoram performance em até 70%
-- **Composite indexes** para queries com múltiplos filtros
-
-#### **Maior Insight**
-
-**Modelar é como arquitetura: quanto mais tempo gasto no planejamento, menos problemas surgem na construção. O investimento em uma boa modelagem inicial paga dividendos em toda a vida do projeto.**
-
-*Esta experiência solidificou que a modelagem de dados é a fundação sobre a qual sistemas robustos são construídos.*
+- **Aplicação da modelagem em camadas (conceitual → lógico → físico)** garantindo estrutura consistente e evolução segura do modelo.
+- **Normalização até 3FN**, eliminando redundâncias e assegurando integridade dos dados.
+- **Definição precisa de PKs, FKs, UNIQUE e CHECK**, aplicando regras de negócio diretamente no banco.
+- **Modelagem de pagamentos parcelados** com relacionamento 1:N e controle individual de vencimento, status e valor.
+- **Implementação de domínios de status** utilizando constraints para prevenir estados inválidos.
+- **Estruturação de tabelas com tipos adequados** (BOOLEAN, DECIMAL, TIMESTAMP) e defaults inteligentes.
+- **Criação de índices otimizados** para acelerar consultas e melhorar performance do modelo.
+- **Escrita de consultas SQL analíticas e operacionais** usando JOINs, agregações, subconsultas e filtros compostos.
+- **Simulação de cenários financeiros reais**, incluindo juros, descontos, parcelamentos e diferentes métodos de pagamento.
+- **Organização modular dos scripts SQL**, separando DDL, inserts, queries e índices para facilitar manutenção.
+- **Utilização de ferramentas especializadas** (BrModelo, MySQL Workbench, PostgreSQL e DBeaver) em cada etapa do projeto.
+- **Visão sistêmica da modelagem**, entendendo como decisões estruturais impactam performance, relatórios e evolução futura.
 
 ## **🪪 Licença**
 
